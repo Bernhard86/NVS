@@ -1,4 +1,4 @@
-# Übung Subnetting
+# Übung Subnetting !! BITTE unter Code anschauen, da ist es besser formatiert !!
 
 ## Übung 1
 
