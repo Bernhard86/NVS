@@ -1,0 +1,87 @@
+Partner Laptop: Cigci Umut
+
+PS C:\Users\Bernh> ping 192.168.33.141
+
+Ping wird ausgeführt für 192.168.33.141 mit 32 Bytes Daten:
+Antwort von 192.168.33.141: Bytes=32 Zeit=223ms TTL=128
+Antwort von 192.168.33.141: Bytes=32 Zeit=215ms TTL=128
+Antwort von 192.168.33.141: Bytes=32 Zeit=101ms TTL=128
+Antwort von 192.168.33.141: Bytes=32 Zeit=93ms TTL=128
+
+Ping-Statistik für 192.168.33.141:
+    Pakete: Gesendet = 4, Empfangen = 4, Verloren = 0
+    (0% Verlust),
+Ca. Zeitangaben in Millisek.:
+    Minimum = 93ms, Maximum = 223ms, Mittelwert = 158ms
+
+----------------------------------------------------------------
+
+PS C:\Users\Bernh> dig MX whitehouse.gov
+
+; <<>> DiG 9.16.28 <<>> MX whitehouse.gov
+;; global options: +cmd
+;; Got answer:
+;; ->>HEADER<<- opcode: QUERY, status: NOERROR, id: 56208
+;; flags: qr rd ra ad; QUERY: 1, ANSWER: 0, AUTHORITY: 1, ADDITIONAL: 1
+
+;; OPT PSEUDOSECTION:
+; EDNS: version: 0, flags:; udp: 512
+;; QUESTION SECTION:
+;whitehouse.gov.                        IN      MX
+
+;; AUTHORITY SECTION:
+whitehouse.gov.         1800    IN      SOA     ernest.ns.cloudflare.com. dns.cloudflare.com. 2368069009 10000 2400 604800 1800
+
+;; Query time: 124 msec
+;; SERVER: 192.168.178.1#53(192.168.178.1)
+;; WHEN: Wed Mar 26 12:33:34 Mitteleuropõische Zeit 2025
+;; MSG SIZE  rcvd: 107
+
+----------------------------------------------------------------
+
+PS C:\Users\Bernh> dig A zdf.de
+
+; <<>> DiG 9.16.28 <<>> A zdf.de
+;; global options: +cmd
+;; Got answer:
+;; ->>HEADER<<- opcode: QUERY, status: NOERROR, id: 28817
+;; flags: qr rd ra; QUERY: 1, ANSWER: 1, AUTHORITY: 0, ADDITIONAL: 1
+
+;; OPT PSEUDOSECTION:
+; EDNS: version: 0, flags:; udp: 512
+;; QUESTION SECTION:
+;zdf.de.                                IN      A
+
+;; ANSWER SECTION:
+zdf.de.                 600     IN      A       91.197.29.78
+
+;; Query time: 49 msec
+;; SERVER: 192.168.178.1#53(192.168.178.1)
+;; WHEN: Wed Mar 26 12:41:30 Mitteleuropõische Zeit 2025
+;; MSG SIZE  rcvd: 51
+
+PS C:\Users\Bernh> dig A zdf.de +short
+91.197.29.78
+
+----------------------------------------------------------------
+
+PS C:\Users\Bernh> dig AAAA zdf.de
+
+; <<>> DiG 9.16.28 <<>> AAAA zdf.de
+;; global options: +cmd
+;; Got answer:
+;; ->>HEADER<<- opcode: QUERY, status: NOERROR, id: 64126
+;; flags: qr rd ra; QUERY: 1, ANSWER: 0, AUTHORITY: 1, ADDITIONAL: 1
+
+;; OPT PSEUDOSECTION:
+; EDNS: version: 0, flags:; udp: 512
+;; QUESTION SECTION:
+;zdf.de.                                IN      AAAA
+
+;; AUTHORITY SECTION:
+zdf.de.                 180     IN      SOA     ns01.zdf.de. netzwerk.zdf.de. 2008115889 900 300 2592000 180
+
+;; Query time: 20 msec
+;; SERVER: 192.168.178.1#53(192.168.178.1)
+;; WHEN: Wed Mar 26 12:46:41 Mitteleuropõische Zeit 2025
+;; MSG SIZE  rcvd: 85
