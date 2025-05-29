@@ -5,20 +5,28 @@
 ## VM mit HyperV
 ## Ubuntu 22.04
 
+# ----------------------------------------------------------------------------
 # ssh-server installieren
+```bash
 bernhard@bernhard-VM-Ubuntu:~$ sudo apt update
 
 bernhard@bernhard-VM-Ubuntu:~$ sudo apt install openssh-server
+```
 
 # SSH/Port
 ## Port 22 für SSH erlauben
+```bash
 bernhard@bernhard-VM-Ubuntu:~$ sudo ufw allow ssh
+```
 
 ## Port 22 für SSH nicht erlauben
+```bash
 bernhard@bernhard-VM-Ubuntu:~$ sudo ufw deny 22
+```
 
 # firewall
 ## firewall status
+```bash
 bernhard@bernhard-VM-Ubuntu:~$ sudo ufw status
 Status: Aktiv
 
@@ -26,8 +34,10 @@ Zu                         Aktion      Von
 --                         ------      ---
 22/tcp                     ALLOW       Anywhere                  
 22/tcp (v6)                ALLOW       Anywhere (v6)     
+```
 
 ## ssh status abfragen
+```bash
 bernhard@bernhard-VM-Ubuntu:~$ sudo service ssh status
 [sudo] Passwort für bernhard: 
 ● ssh.service - OpenBSD Secure Shell server
@@ -49,9 +59,11 @@ Mai 28 11:56:36 bernhard-VM-Ubuntu sshd[7545]: Server listening on :: port 22.
 Mai 28 11:56:36 bernhard-VM-Ubuntu systemd[1]: Started OpenBSD Secure Shell ser>
 Mai 28 12:06:49 bernhard-VM-Ubuntu sshd[8178]: Accepted password for bernhard f>
 Mai 28 12:06:49 bernhard-VM-Ubuntu sshd[8178]: pam_unix(sshd:session): session >
+```
 
 # ----------------------------------------------------------------------------
 # SSH mit Passwort
+```bash
 bernhard@bernhard-VM-Ubuntu:~$ ssh bernhard@localhost
 bernhard@localhost's password: 
 Welcome to Ubuntu 22.04 LTS (GNU/Linux 5.15.0-27-generic x86_64)
@@ -68,34 +80,48 @@ New release '24.04.2 LTS' available.
 Run 'do-release-upgrade' to upgrade to it.
 
 Last login: Wed May 28 12:06:50 2025 from 127.0.0.1
+```
 
 ## SSH Verbindung beenden
+```bash
 bernhard@bernhard-VM-Ubuntu:~$ exit
 Abgemeldet
 Connection to localhost closed.
+```
 
 # ----------------------------------------------------------------------------
 # SSH ohne Passwort
 
 ## Schlüssel generieren
+```bash
 bernhard@bernhard-VM-Ubuntu:~$ ssh-keygen
+```
 
 ## public Schlüssel anzeigen lassen 
+```bash
 bernhard@bernhard-VM-Ubuntu:~$ cat ~/.ssh/id_rsa.pub
+```
 
 ## public Schlüssel in den Schlüsselordner einfügen
+```bash
 bernhard@bernhard-VM-Ubuntu:~$ cat ~/.ssh/id_rsa.pub >> ~/.ssh/authorized_keys
+```
 
 ## RECHTE für den Ordner ~/.ssh/authorized_keys
+```bash
 bernhard@bernhard-VM-Ubuntu:~$ chmod 600 ~/.ssh/authorized_keys
 
-## Zeichen     Bedeutung
-## -rw-------  Nur Besitzer darf lesen + schreiben (600)
+Zeichen     Bedeutung
+-rw-------  Nur Besitzer darf lesen + schreiben (600)
+```
 
 ## authorized_keys anzeigen lassen
+```bash
 bernhard@bernhard-VM-Ubuntu:~$ cat ~/.ssh/authorized_keys
+```
 
 # SSH ohne PW
+```bash
 bernhard@bernhard-VM-Ubuntu:~$ ssh bernhard@localhost
 Welcome to Ubuntu 22.04 LTS (GNU/Linux 5.15.0-27-generic x86_64)
 
@@ -111,17 +137,21 @@ New release '24.04.2 LTS' available.
 Run 'do-release-upgrade' to upgrade to it.
 
 Last login: Wed May 28 12:17:49 2025 from 127.0.0.1
+```
 
 ## SSH Verbindung beenden
+```bash
 bernhard@bernhard-VM-Ubuntu:~$ exit
 Abgemeldet
 Connection to localhost closed.
+```
 
 ## SSH Server beenden
+```bash
 bernhard@bernhard-VM-Ubuntu:~$ sudo systemctl stop sshd
 oder
 bernhard@bernhard-VM-Ubuntu:~$ sudo service ssh stop
-
+```
 
 # ----------------------------------------------------------------------------
 # SSH
