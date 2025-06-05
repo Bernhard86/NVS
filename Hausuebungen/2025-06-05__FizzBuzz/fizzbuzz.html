@@ -1,0 +1,81 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+    <meta charset="UTF-8">
+    <title>FizzBuzz bis FizzBuzzWhizzBang</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            padding: 2rem;
+            background-color: #f8f8f8;
+        }
+        input, button {
+            padding: 0.5rem 1rem;
+            font-size: 1rem;
+            margin-bottom: 1rem;
+            margin-right: 0.5rem;
+        }
+        #output {
+            background: #fff;
+            padding: 1rem;
+            border-radius: 8px;
+            box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+            line-height: 1.6;
+            max-height: 500px;
+            overflow-y: auto;
+        }
+        .line {
+            margin-bottom: 0.2rem;
+        }
+    </style>
+</head>
+<body>
+
+    <h1>FizzBuzz bis FizzBuzzWhizzBang</h1>
+    <label for="limit">Zähle bis (z. B. 2000): </label>
+    <input type="number" id="limit" placeholder="z. B. 2000" />
+    <button onclick="startFizzBuzz()">Start</button>
+    <button onclick="clearOutput()">Clear</button>
+    <h3>Bernhard Heimberger</h3>
+    <p>Juni 2025</p>
+
+    <div id="output"></div>
+
+    <script>
+        function startFizzBuzz() {
+            const outputDiv = document.getElementById("output");
+            const limit = parseInt(document.getElementById("limit").value);
+            outputDiv.innerHTML = "";
+
+            if (isNaN(limit) || limit <= 0) {
+                outputDiv.innerHTML = "<div class='line'>Bitte gib eine gültige positive Zahl ein.</div>";
+                return;
+            }
+
+            for (let i = 1; i <= limit; i++) {
+                let output = "";
+
+                if (i % 3 === 0) output += "Fizz";
+                if (i % 5 === 0) output += "Buzz";
+                if (i % 7 === 0) output += "Whizz";
+                if (i % 11 === 0) output += "Bang";
+
+                const line = document.createElement("div");
+                line.className = "line";
+                line.textContent = output || i;
+                outputDiv.appendChild(line);
+
+                if (output === "FizzBuzzWhizzBang") {
+                    break;
+                }
+            }
+        }
+
+        function clearOutput() {
+            document.getElementById("output").innerHTML = "";
+            document.getElementById("limit").value = "";
+        }
+    </script>
+
+</body>
+</html>
