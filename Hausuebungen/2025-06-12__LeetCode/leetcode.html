@@ -1,0 +1,150 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+    <meta charset="UTF-8">
+    <title>Maximale Wasserfläche</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 30px;
+            background: #f5f5f5;
+            color: #333;
+        }
+        h2 {
+            margin-bottom: 10px;
+        }
+        input, button {
+            padding: 8px;
+            margin: 5px 0;
+            font-size: 16px;
+        }
+        #result {
+            margin-top: 15px;
+            font-weight: bold;
+            font-size: 18px;
+        }
+        #chart {
+            display: flex;
+            justify-content: center;
+            align-items: flex-end;
+            margin-top: 30px;
+            height: 300px;
+            border-left: 2px solid #333;
+            border-bottom: 2px solid #333;
+            padding: 10px;
+            background: #fff;
+            position: relative;
+        }
+        .bar-container {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            margin: 0 4px;
+            justify-content: flex-end;
+            height: 100%;
+        }
+        .label {
+            font-size: 14px;
+            margin-bottom: 5px;
+        }
+        .bar {
+            width: 25px;
+            background-color: #ccc;
+        }
+        .wall {
+            background-color: darkblue !important;
+        }
+        .water {
+            background-color: lightblue !important;
+        }
+    </style>
+</head>
+<body>
+
+<h2>Maximale Wasserfläche berechnen & visualisieren</h2>
+
+<input type="text" id="inputArray" placeholder="1,8,6,2,5,4,8,3,7" size="50">
+<button onclick="berechneMaxArea()">Berechnen</button>
+
+<div id="result"></div>
+<div id="chart"></div>
+
+<script>
+    function findMaxArea(height) {
+        let left = 0, right = height.length - 1;
+        let maxArea = 0;
+        let bestLeft = 0, bestRight = 0;
+
+        while (left < right) {
+            const currentHeight = Math.min(height[left], height[right]);
+            const width = right - left;
+            const area = currentHeight * width;
+
+            if (area > maxArea) {
+                maxArea = area;
+                bestLeft = left;
+                bestRight = right;
+            }
+
+            if (height[left] < height[right]) left++;
+            else right--;
+        }
+        return { maxArea, bestLeft, bestRight };
+    }
+
+    function berechneMaxArea() {
+        const input = document.getElementById('inputArray').value;
+        const array = input.split(',').map(Number);
+        if (array.length < 2 || array.some(isNaN)) {
+            document.getElementById('result').innerText = "Bitte gültige Zahlen eingeben.";
+            return;
+        }
+        const { maxArea, bestLeft, bestRight } = findMaxArea(array);
+        document.getElementById('result').innerText = "Maximale Wasserfläche: " + maxArea;
+        zeichneDiagramm(array, bestLeft, bestRight);
+    }
+
+    function zeichneDiagramm(array, bestLeft, bestRight) {
+        const chart = document.getElementById('chart');
+        chart.innerHTML = '';
+        const chartHeight = 200;
+        const maxH = Math.max(...array);
+        const waterLevel = Math.min(array[bestLeft], array[bestRight]);
+
+        array.forEach((h, i) => {
+            const container = document.createElement('div');
+            container.className = 'bar-container';
+
+            const label = document.createElement('div');
+            label.className = 'label';
+            label.innerText = h;
+
+            const bar = document.createElement('div');
+            bar.className = 'bar';
+            bar.style.height = (h / maxH * chartHeight) + 'px';
+
+            // Wände
+            if (i === bestLeft || i === bestRight) {
+                bar.classList.add('wall');
+            }
+            // Wasserbereich
+            else if (i > bestLeft && i < bestRight && h < waterLevel) {
+                bar.classList.add('water');
+                bar.style.height = (waterLevel / maxH * chartHeight) + 'px';
+            }
+
+            container.appendChild(label);
+            container.appendChild(bar);
+            chart.appendChild(container);
+        });
+    }
+</script>
+
+</body>
+</html>
+
+
+
+
+
+
