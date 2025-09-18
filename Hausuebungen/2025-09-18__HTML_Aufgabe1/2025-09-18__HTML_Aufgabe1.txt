@@ -1,0 +1,26 @@
+Boolesche Attribute
+
+Einige Inhaltsattribute (z.B. required, readonly, disabled) 
+werden boolesche Attribute genannt. Wenn ein boolesches Attribut vorhanden ist,
+ist sein Wert true, und wenn es fehlt, ist sein Wert false.
+
+Das sind Attribute, die nur zwei Zustände haben können: 
+vorhanden oder nicht vorhanden.
+
+z.B.:
+disabled, checked, readonly, required, autoplay
+
+
+Wenn das Attribut da ist, gilt es als wahr (true).
+<input type="checkbox" checked>
+→ Dieses Kästchen ist angehakt.
+
+
+Wenn es fehlt, gilt es als falsch (false).
+<input type="checkbox">
+→ Dieses Kästchen ist nicht angehakt.
+
+
+LINK:
+https://developer.mozilla.org/de/docs/Web/HTML/Reference/Attributes
+
