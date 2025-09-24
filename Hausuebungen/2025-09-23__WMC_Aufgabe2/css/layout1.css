@@ -1,0 +1,196 @@
+/* ===============================
+   BASIS: Body & HTML
+   =============================== */
+html, body {
+  height: 100%;              
+  margin: 15px;              /* Abstand rund um den Inhalt */
+  font-family: sans-serif;   
+  color: #000;               
+  transition: background 0.3s, color 0.3s;
+}
+
+/* ===============================
+   HINTERGRUNDBILD
+   =============================== */
+.bg {
+  position: fixed;           
+  top: 0;
+  left: 0;
+  width: 100vw;              
+  height: 100vh;          
+  background-image: url("../images/Manchester_United.png");
+  background-size: contain;  /* Bild wird komplett angezeigt */
+  background-position: center;
+  background-repeat: no-repeat;
+  z-index: -2;
+}
+
+/* Transparentes Overlay über dem Bild */
+.bg::after {
+  content: "";
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100vw;
+  height: 100vh;
+  background: rgba(219, 204, 204, 0.85); /*helles Overlay */
+  z-index: -1;              
+  transition: background 0.3s;
+}
+
+/* ===============================
+   INHALT
+   =============================== */
+.content {
+  position: relative;
+  z-index: 1;
+  padding: 20px;
+  transition: color 0.3s;
+}
+
+/* ===============================
+   NAVIGATION
+   =============================== */
+nav {
+  display: flex;             /* Nav-Elemente nebeneinander */
+  align-items: center;       /* Vertikal zentrieren */
+  justify-content: space-between; /* Links: Menü, Rechts: Toggle */
+  margin-bottom: 20px;
+}
+
+/* Navigation Liste */
+nav ul {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+}
+
+nav ul li {
+  display: inline-block;     /* Menü nebeneinander */
+  margin-right: 15px;
+}
+
+/* Navigation Links als Buttons */
+nav ul li a {
+  display: inline-block;
+  padding: 8px 15px;
+  background-color: #d83b3b; /* Rot Standard */
+  color: #fff;
+  text-decoration: none;
+  font-weight: bold;
+  border-radius: 5px;
+  transition: background 0.3s;
+}
+
+nav ul li a:hover {
+  background-color: #ff0000;
+}
+
+/* ===============================
+   TOGGLE (Hell/Dunkel Schalter)
+   =============================== */
+#theme-toggle {
+  display: none; /* Checkbox unsichtbar */
+}
+
+.toggle-label {
+  cursor: pointer;
+  font-size: 1rem;
+  padding: 6px 12px;
+  border-radius: 5px;
+  background: #ddd;
+  color: #000;
+  transition: background 0.3s, color 0.3s;
+}
+.toggle-label:hover {
+  background: #bbb;
+}
+
+/* ===============================
+   LINKS GLOBAL
+   =============================== */
+a {
+  text-decoration: none; /* keine Unterstreichung */
+  color: #000;           /* Standard Schwarz */
+  transition: color 0.3s;
+}
+
+a:hover {
+  background-color: #d83b3b;
+}
+
+/* ===============================
+   GO TO TOP BUTTON
+   =============================== */
+.go-top {
+  position: fixed;
+  bottom: 20px;
+  right: 20px;
+  background-color: #a293c6;
+  color: #fff;
+  font-size: 1.5rem;
+  padding: 5px 14px;
+  border-radius: 100%;
+  text-align: center;
+  text-decoration: none;
+  transition: background 0.3s;
+  z-index: 99;           /* immer oben */
+}
+.go-top:hover {
+  background-color: #ff0000;
+}
+
+/* ========================================
+   DARK MODE (aktiv wenn Checkbox gecheckt)
+   ======================================== */
+
+/* Alle nachfolgenden Geschwister-Elemente 
+   (also .bg, nav, .content  etc.)
+   und deren Texte standardmäßig hell färben */
+#theme-toggle:checked ~ * {
+  color: #eee;
+}
+
+/* Alle Links (a-Tags) in diesen Elementen
+   sollen im Dark Mode weiß sein */
+#theme-toggle:checked ~ * a {
+  color: #fff;
+}
+
+/* Overlay-Farbe im Hintergrund ändern */
+#theme-toggle:checked ~ .bg::after {
+  background: rgba(18, 18, 18, 0.82);
+}
+
+/* Content-Bereich: 
+   leicht dunkler Hintergrund + heller Text */
+#theme-toggle:checked ~ .content {
+  background: rgba(24, 24, 24, 0.85);
+  color: #eee;
+}
+
+/* Toggle-Label in der Nav */
+#theme-toggle:checked ~ nav .toggle-label {
+  background: #333;
+  color: #fff;
+}
+
+/* Go-top Button */
+#theme-toggle:checked ~ .go-top {
+  background-color: #5a5a61;
+  color: #fff;
+}
+
+/* Footer */
+#theme-toggle:checked ~ footer,
+#theme-toggle:checked ~ footer * {
+  color: #eee;
+}
+
+#theme-toggle:checked ~ footer button {
+  background-color: #444;
+}
+
+#theme-toggle:checked ~ footer button:hover {
+  background-color: #666;
+}
